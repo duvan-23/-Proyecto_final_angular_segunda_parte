@@ -14,7 +14,7 @@ import { cursos } from 'src/app/datos/cursos';
 import { AgregarClaseComponent } from '../crud_clase/agregar-clase/agregar-clase.component';
 import { CursosService } from '../../services/cursos.service';
 import { EditarClaseComponent } from '../crud_clase/editar-clase/editar-clase.component';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-clases',
   templateUrl: './clases.component.html',
@@ -28,7 +28,8 @@ export class ClasesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(
     private cursoService: CursosService,
-    private dialog: MatDialog,private _snackBar: MatSnackBar
+    private dialog: MatDialog,private _snackBar: MatSnackBar,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -75,6 +76,7 @@ export class ClasesComponent implements OnInit {
         this._snackBar.open(`Agrego la clase ${res.nombre} Exitosamente`, "Cerrar", {
           duration: 3000
         });
+        this.router.navigate(['cursos']);
       }
     })
   }
